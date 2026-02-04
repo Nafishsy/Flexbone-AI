@@ -111,7 +111,9 @@ Process multiple images in a single request (max 10 images).
 
 | Status | Description |
 |--------|-------------|
-| 400 | Invalid file type, file too large, or empty file |
+| 400 | Empty file, corrupted image, or batch size exceeded |
+| 413 | File too large (max 10MB) |
+| 415 | Unsupported file type or invalid image signature |
 | 429 | Rate limit exceeded |
 | 500 | OCR processing failed |
 
