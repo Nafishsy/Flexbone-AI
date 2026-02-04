@@ -11,10 +11,12 @@ from PIL.ExifTags import TAGS
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
 
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="OCR Image Text Extraction API")
 app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
 
 MAX_FILE_SIZE = 10 * 1024 * 1024
 SUPPORTED_FORMATS = {
